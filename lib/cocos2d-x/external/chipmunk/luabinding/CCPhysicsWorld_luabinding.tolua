@@ -168,7 +168,6 @@ class CCPhysicsBody : public CCObject
 
 	CCArray *getJointsWith(CCPhysicsBody *otherBody);
     void breakAllJoints(void);
-    void breakJointByType(JointType jointType);
     
     // 
 

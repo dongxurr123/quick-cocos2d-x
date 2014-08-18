@@ -21,6 +21,12 @@ LOCAL_SRC_FILES := \
     chipmunk/cocos2dx_support/CCPhysicsShape.cpp \
     chipmunk/cocos2dx_support/CCPhysicsSupport.cpp \
     chipmunk/cocos2dx_support/CCPhysicsWorld.cpp \
+    chipmunk/cocos2dx_support/constraints/CCJoint.cpp \
+    chipmunk/cocos2dx_support/constraints/CCPinJoint.cpp \
+    chipmunk/cocos2dx_support/constraints/CCGrooveJoint.cpp \
+    chipmunk/cocos2dx_support/constraints/CCPivotJoint.cpp \
+    chipmunk/cocos2dx_support/constraints/CCSlideJoint.cpp \
+    chipmunk/cocos2dx_support/constraints/CCDampedSpringJoint.cpp \
     chipmunk/luabinding/CCPhysicsWorld_luabinding.cpp
 
 
@@ -29,10 +35,12 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
                            $(LOCAL_PATH)/extra/luabinding \
                            $(LOCAL_PATH)/chipmunk/include \
                            $(LOCAL_PATH)/chipmunk/cocos2dx_support \
+                           $(LOCAL_PATH)/chipmunk/cocos2dx_support/constraints \
                            $(LOCAL_PATH)/chipmunk/luabinding
 
 LOCAL_C_INCLUDES := $(LOCAL_EXPORT_C_INCLUDES) \
     LOCAL_PATH/chipmunk/cocos2dx_support \
+    LOCAL_PATH/chipmunk/cocos2dx_support/constraints \
     LOCAL_PATH/chipmunk/luabinding \
     LOCAL_PATH/chipmunk/include
 

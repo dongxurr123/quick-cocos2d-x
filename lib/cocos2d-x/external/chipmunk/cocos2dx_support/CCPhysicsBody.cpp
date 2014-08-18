@@ -573,7 +573,7 @@ void CCPhysicsBody::update(float dt)
 
 CCPinJoint *CCPhysicsBody::pinJoint(CCPhysicsBody *otherBody)
 {
-	this->checkJointWith(otherBody, SLIDE_JOINT);
+	this->checkJointWith(otherBody);
 	CCPhysicsVector *archrA = CCPhysicsVector::create(0, 0);
 	CCPhysicsVector *archrB = CCPhysicsVector::create(0, 0);
 	return this->pinJoint(otherBody, archrA, archrB);
@@ -581,7 +581,7 @@ CCPinJoint *CCPhysicsBody::pinJoint(CCPhysicsBody *otherBody)
 
 CCPinJoint *CCPhysicsBody::pinJoint(CCPhysicsBody *otherBody, CCPhysicsVector *archrThis, CCPhysicsVector *archrOther)
 {
-	this->checkJointWith(otherBody, PIN_JOINT);
+	this->checkJointWith(otherBody);
 	CCPinJoint *pinJoint = new CCPinJoint(this->m_world, this, otherBody, archrThis->getVector(), archrOther->getVector());
 	this->addJoint(pinJoint);
 	otherBody->addJoint(pinJoint);
@@ -591,7 +591,7 @@ CCPinJoint *CCPhysicsBody::pinJoint(CCPhysicsBody *otherBody, CCPhysicsVector *a
 CCDampedSpringJoint *CCPhysicsBody::dampedSpringJoint(CCPhysicsBody *otherBody,
 	cpFloat restLength, cpFloat stiffness, cpFloat damping)
 {
-	this->checkJointWith(otherBody, SLIDE_JOINT);
+	this->checkJointWith(otherBody);
 	CCPhysicsVector *bodyAVect = CCPhysicsVector::create(0, 0);
 	CCPhysicsVector *bodyBVect = CCPhysicsVector::create(0, 0);
 	return this->dampedSpringJoint(otherBody, bodyAVect, bodyBVect, restLength, stiffness, damping);
@@ -601,7 +601,7 @@ CCDampedSpringJoint *CCPhysicsBody::dampedSpringJoint(CCPhysicsBody *otherBody,
 	CCPhysicsVector *archrThis, CCPhysicsVector *archrOther,
 	cpFloat restLength, cpFloat stiffness, cpFloat damping)
 {
-	this->checkJointWith(otherBody, DAMPED_SPRING);
+	this->checkJointWith(otherBody);
 	CCDampedSpringJoint *dampedSpringJoint = new CCDampedSpringJoint(this->m_world, this, otherBody, 
 		archrThis->getVector(), archrOther->getVector(),
 		restLength, stiffness, damping);
@@ -612,7 +612,7 @@ CCDampedSpringJoint *CCPhysicsBody::dampedSpringJoint(CCPhysicsBody *otherBody,
 
 CCSlideJoint *CCPhysicsBody::slideJoint(CCPhysicsBody *otherBody, cpFloat min, cpFloat max)
 {
-	this->checkJointWith(otherBody, SLIDE_JOINT);
+	this->checkJointWith(otherBody);
 	CCPhysicsVector *archrThis = CCPhysicsVector::create(0, 0);
 	CCPhysicsVector *archrOther = CCPhysicsVector::create(0, 0);
 	return this->slideJoint(otherBody, archrThis, archrOther, min, max);
@@ -621,7 +621,7 @@ CCSlideJoint *CCPhysicsBody::slideJoint(CCPhysicsBody *otherBody, cpFloat min, c
 CCSlideJoint *CCPhysicsBody::slideJoint(CCPhysicsBody *otherBody, CCPhysicsVector *archrThis, CCPhysicsVector *archrOther,
 	cpFloat min, cpFloat max)
 {
-	this->checkJointWith(otherBody, SLIDE_JOINT);
+	this->checkJointWith(otherBody);
 	CCSlideJoint *slideJoint = new CCSlideJoint(this->m_world, 
 		this, otherBody, archrThis->getVector(), archrOther->getVector(), min, max);
 	this->addJoint(slideJoint);
@@ -631,7 +631,7 @@ CCSlideJoint *CCPhysicsBody::slideJoint(CCPhysicsBody *otherBody, CCPhysicsVecto
 
 CCPivotJoint *CCPhysicsBody::pivotJoint(CCPhysicsBody *otherBody)
 {
-	this->checkJointWith(otherBody, PIVOT_JOINT);
+	this->checkJointWith(otherBody);
 	CCPhysicsVector *archrThis = CCPhysicsVector::create(0, 0);
 	CCPhysicsVector *archrOther = CCPhysicsVector::create(0, 0);
 	return this->pivotJoint(otherBody, archrThis, archrOther);
@@ -639,7 +639,7 @@ CCPivotJoint *CCPhysicsBody::pivotJoint(CCPhysicsBody *otherBody)
 
 CCPivotJoint *CCPhysicsBody::pivotJoint(CCPhysicsBody *otherBody, CCPhysicsVector *archrThis, CCPhysicsVector *archrOther)
 {
-	this->checkJointWith(otherBody, PIVOT_JOINT);
+	this->checkJointWith(otherBody);
 	CCPivotJoint *pivotJoint = new CCPivotJoint(this->m_world, this, otherBody, archrThis->getVector(), archrOther->getVector());
 	this->addJoint(pivotJoint);
 	otherBody->addJoint(pivotJoint);
@@ -648,7 +648,7 @@ CCPivotJoint *CCPhysicsBody::pivotJoint(CCPhysicsBody *otherBody, CCPhysicsVecto
 
 CCPivotJoint *CCPhysicsBody::pivotJoint(CCPhysicsBody *otherBody, CCPhysicsVector *pivot)
 {
-	this->checkJointWith(otherBody, PIVOT_JOINT);
+	this->checkJointWith(otherBody);
 	CCPivotJoint *pivotJoint = new CCPivotJoint(this->m_world, this, otherBody, pivot->getVector());
 	this->addJoint(pivotJoint);
 	otherBody->addJoint(pivotJoint);
@@ -701,18 +701,6 @@ void CCPhysicsBody::breakAllJoints(void)
 	tmpJoints.clear();
 }
 
-void CCPhysicsBody::breakJointByType(JointType jointType)
-{
-	unsigned int count = this->m_joints->count();
-	for (unsigned int i = 0; i < count; i++)
-	{
-		CCJoint* joint = static_cast<CCJoint*>(this->m_joints->objectAtIndex(i));
-		if (joint != NULL && joint->getJointType() == jointType) {
-			joint->breakJoint();
-		}
-	}
-}
-
 CCArray *CCPhysicsBody::getJointsWith(CCPhysicsBody *otherBody)
 {
 	CCArray *arr = CCArray::create();
@@ -730,7 +718,7 @@ CCArray *CCPhysicsBody::getJointsWith(CCPhysicsBody *otherBody)
 	return arr;
 }
 
-void CCPhysicsBody::checkJointWith(CCPhysicsBody *otherBody, JointType type)
+void CCPhysicsBody::checkJointWith(CCPhysicsBody *otherBody)
 {
 	CCAssert(otherBody != NULL, "body can not joint with NULL");
 	CCAssert(otherBody != this, "body can not joint with itself");

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: CCPhysicsWorld_luabinding
-** Generated automatically by tolua++-1.0.92 on 08/15/14 00:08:55.
+** Generated automatically by tolua++-1.0.92 on 08/18/14 23:25:13.
 */
 
 #include "CCPhysicsWorld_luabinding.h"
@@ -3682,39 +3682,6 @@ static int tolua_CCPhysicsWorld_luabinding_CCPhysicsBody_breakAllJoints00(lua_St
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: breakJointByType of class  CCPhysicsBody */
-#ifndef TOLUA_DISABLE_tolua_CCPhysicsWorld_luabinding_CCPhysicsBody_breakJointByType00
-static int tolua_CCPhysicsWorld_luabinding_CCPhysicsBody_breakJointByType00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"CCPhysicsBody",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  CCPhysicsBody* self = (CCPhysicsBody*)  tolua_tousertype(tolua_S,1,0);
-  JointType jointType = ((JointType) (int)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'breakJointByType'", NULL);
-#endif
-  {
-   self->breakJointByType(jointType);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'breakJointByType'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: removeSelf of class  CCPhysicsBody */
 #ifndef TOLUA_DISABLE_tolua_CCPhysicsWorld_luabinding_CCPhysicsBody_removeSelf00
 static int tolua_CCPhysicsWorld_luabinding_CCPhysicsBody_removeSelf00(lua_State* tolua_S)
@@ -7076,7 +7043,6 @@ TOLUA_API int tolua_CCPhysicsWorld_luabinding_open (lua_State* tolua_S)
    tolua_function(tolua_S,"pivotJoint",tolua_CCPhysicsWorld_luabinding_CCPhysicsBody_pivotJoint02);
    tolua_function(tolua_S,"getJointsWith",tolua_CCPhysicsWorld_luabinding_CCPhysicsBody_getJointsWith00);
    tolua_function(tolua_S,"breakAllJoints",tolua_CCPhysicsWorld_luabinding_CCPhysicsBody_breakAllJoints00);
-   tolua_function(tolua_S,"breakJointByType",tolua_CCPhysicsWorld_luabinding_CCPhysicsBody_breakJointByType00);
    tolua_function(tolua_S,"removeSelf",tolua_CCPhysicsWorld_luabinding_CCPhysicsBody_removeSelf00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"CCPhysicsShape","CCPhysicsShape","CCObject",NULL);

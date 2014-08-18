@@ -19,7 +19,6 @@ class CCPinJoint;
 class CCDampedSpringJoint;
 class CCSlideJoint;
 class CCPivotJoint;
-enum JointType;
 
 class CCPhysicsBody : public CCObject
 {
@@ -162,7 +161,6 @@ public:
 	CCPivotJoint *pivotJoint(CCPhysicsBody *otherBody, CCPhysicsVector *pivot);
 
 	void breakAllJoints(void);
-	void breakJointByType(JointType jointType);
 
 	// get all joints constraint with the otherBody
 	CCArray *getJointsWith(CCPhysicsBody *otherBody);
@@ -193,7 +191,7 @@ private:
 	void addJoint(CCJoint *joint);
 	void removeJoint(CCJoint *joint);
 
-	void checkJointWith(CCPhysicsBody *otherBody, JointType type);
+	void checkJointWith(CCPhysicsBody *otherBody);
 };
 
 #endif // __CCPHYSICS_BODY_H_
